@@ -6,7 +6,7 @@ import Session from "./Session";
 function Pomodoro() {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [timerState, setTimerState] = useState("Stop");
-  const [focusTimer, setFocusTimer] = useState(25 * 60); 
+  const [focusTimer, setFocusTimer] = useState(25 * 60);
   const [elapsedFocus, setElapsedFocus] = useState(0);
   const [breakTimer, setBreakTimer] = useState(5 * 60);
   const [elaspedBreak, setElapsedBreak] = useState(0);
@@ -20,7 +20,7 @@ function Pomodoro() {
           new Audio(`https://bigsoundbank.com/UPLOAD/mp3/1482.mp3`).play();
           setTimerState("Break");
           setElapsedFocus(0);
-        }  
+        }
       } else if (timerState === "Break") {
         setElapsedBreak((timer) => timer + 1);
         const timeRemaining = breakTimer - elaspedBreak;
@@ -32,22 +32,22 @@ function Pomodoro() {
       }
     },
     isTimerRunning ? 1000 : null
-  ); 
+  );
 
   return (
     <div className="pomodoro">
-      <ChangeTime 
-        focusTimer={focusTimer} 
-        setFocusTimer={setFocusTimer} 
-        breakTimer={breakTimer} 
-        setBreakTimer={setBreakTimer} 
-        timerState={timerState} 
+      <ChangeTime
+        focusTimer={focusTimer}
+        setFocusTimer={setFocusTimer}
+        breakTimer={breakTimer}
+        setBreakTimer={setBreakTimer}
+        timerState={timerState}
       />
-      <RunTime 
-        setIsTimerRunning={setIsTimerRunning} 
-        setTimerState={setTimerState} 
-        isTimerRunning={isTimerRunning} 
-        timerState={timerState} 
+      <RunTime
+        setIsTimerRunning={setIsTimerRunning}
+        setTimerState={setTimerState}
+        isTimerRunning={isTimerRunning}
+        timerState={timerState}
         setElapsedBreak={setElapsedBreak}
         setElapsedFocus={setElapsedFocus}
       />

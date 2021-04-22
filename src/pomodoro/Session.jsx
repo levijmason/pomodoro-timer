@@ -1,7 +1,13 @@
 import React from "react";
-import {secondsToDuration} from "../utils/duration";
+import { secondsToDuration } from "../utils/duration";
 
-function Session({focusTimer, elapsedFocus, breakTimer, elaspedBreak, timerState}) {
+function Session({
+  focusTimer,
+  elapsedFocus,
+  breakTimer,
+  elaspedBreak,
+  timerState,
+}) {
   if (timerState === "Stop") {
     return null;
   }
@@ -15,14 +21,14 @@ function Session({focusTimer, elapsedFocus, breakTimer, elaspedBreak, timerState
     return timeRemaining === 3600 ? "60:00" : secondsToDuration(timeRemaining);
   }
 
-  function displayBreakTimer() { 
+  function displayBreakTimer() {
     return secondsToDuration(breakTimer);
   }
 
   function displayElapsedBreak() {
     const timeRemaining = breakTimer - elaspedBreak;
     return secondsToDuration(timeRemaining);
-  } 
+  }
 
   function displaySessionTitle() {
     if (timerState === "Focus") {
@@ -30,7 +36,7 @@ function Session({focusTimer, elapsedFocus, breakTimer, elaspedBreak, timerState
     } else if (timerState === "Break") {
       return `On Break for ${displayBreakTimer()} minutes`;
     }
-  } 
+  }
 
   function displayRemainingTime() {
     if (timerState === "Focus") {
@@ -43,14 +49,13 @@ function Session({focusTimer, elapsedFocus, breakTimer, elaspedBreak, timerState
   function loadingBarWidth() {
     let timeRemaining = 0;
     if (timerState === "Focus") {
-      timeRemaining = ((elapsedFocus / focusTimer) * 100);
+      timeRemaining = (elapsedFocus / focusTimer) * 100;
     } else if (timerState === "Break") {
-      timeRemaining = ((elaspedBreak / breakTimer) * 100);
+      timeRemaining = (elaspedBreak / breakTimer) * 100;
     }
 
     return timeRemaining;
   }
-
 
   return (
     <div>
@@ -70,11 +75,11 @@ function Session({focusTimer, elapsedFocus, breakTimer, elaspedBreak, timerState
               role="progressbar"
               aria-valuemin="0"
               aria-valuemax="100"
-              aria-valuenow={loadingBarWidth()} 
-              style={{ width: `${loadingBarWidth()}%` }} 
+              aria-valuenow={loadingBarWidth()}
+              style={{ width: `${loadingBarWidth()}%` }}
             />
           </div>
-        </div> 
+        </div>
       </div>
     </div>
   );

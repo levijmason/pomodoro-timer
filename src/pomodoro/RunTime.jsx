@@ -1,10 +1,17 @@
 import React from "react";
 import classNames from "../utils/class-names";
 
-function RunTime({setIsTimerRunning, setTimerState, isTimerRunning, timerState, setElapsedBreak, setElapsedFocus}) {
+function RunTime({
+  setIsTimerRunning,
+  setTimerState,
+  isTimerRunning,
+  timerState,
+  setElapsedBreak,
+  setElapsedFocus,
+}) {
   function playPause() {
     setIsTimerRunning((prevState) => !prevState);
-    setTimerState((state) => state === "Stop" ? "Focus" : state);
+    setTimerState((state) => (state === "Stop" ? "Focus" : state));
   }
 
   function stop() {
@@ -17,7 +24,7 @@ function RunTime({setIsTimerRunning, setTimerState, isTimerRunning, timerState, 
   function disableStopButton() {
     return timerState === "Stop";
   }
- 
+
   return (
     <div className="row">
       <div className="col">
@@ -32,8 +39,8 @@ function RunTime({setIsTimerRunning, setTimerState, isTimerRunning, timerState, 
             data-testid="play-pause"
             title="Start or pause timer"
             onClick={playPause}
-          > 
-            <span  
+          >
+            <span
               className={classNames({
                 oi: true,
                 "oi-media-play": !isTimerRunning,
@@ -53,7 +60,7 @@ function RunTime({setIsTimerRunning, setTimerState, isTimerRunning, timerState, 
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default RunTime;

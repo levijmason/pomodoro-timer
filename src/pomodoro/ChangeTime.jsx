@@ -1,14 +1,19 @@
 import React from "react";
-import {secondsToDuration} from "../utils/duration";
+import { secondsToDuration } from "../utils/duration";
 
-
-function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, timerState }) {
+function ChangeTime({
+  focusTimer,
+  setFocusTimer,
+  breakTimer,
+  setBreakTimer,
+  timerState,
+}) {
   function decreaseFocus() {
-    setFocusTimer((focusTimer) => focusTimer - (5 * 60));
+    setFocusTimer((focusTimer) => focusTimer - 5 * 60);
   }
 
   function increaseFocus() {
-      setFocusTimer((focusTimer) => focusTimer + (5 * 60));
+    setFocusTimer((focusTimer) => focusTimer + 5 * 60);
   }
 
   function displayFocus() {
@@ -18,7 +23,7 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
   function decreaseBreak() {
     setBreakTimer((breakTimer) => breakTimer - 60);
   }
- 
+
   function increaseBreak() {
     setBreakTimer((breakTimer) => breakTimer + 60);
   }
@@ -26,7 +31,7 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
   function displayBreak() {
     return secondsToDuration(breakTimer);
   }
- 
+
   function disableButtons() {
     return timerState !== "Stop";
   }
@@ -36,14 +41,14 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
       <div className="col">
         <div className="input-group input-group-lg mb-2">
           <span className="input-group-text" data-testid="duration-focus">
-            Focus Duration: { displayFocus() }
+            Focus Duration: {displayFocus()}
           </span>
           <div className="input-group-append">
             <button
               type="button"
               className="btn btn-secondary"
               data-testid="decrease-focus"
-              disabled={disableButtons() || focusTimer <= (5 * 60)}
+              disabled={disableButtons() || focusTimer <= 5 * 60}
               onClick={decreaseFocus}
             >
               <span className="oi oi-minus" />
@@ -52,7 +57,7 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
               type="button"
               className="btn btn-secondary"
               data-testid="increase-focus"
-              disabled={disableButtons() || focusTimer >= (60 * 60)}
+              disabled={disableButtons() || focusTimer >= 60 * 60}
               onClick={increaseFocus}
             >
               <span className="oi oi-plus" />
@@ -68,7 +73,7 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
             </span>
             <div className="input-group-append">
               <button
-                type="button" 
+                type="button"
                 className="btn btn-secondary"
                 data-testid="decrease-break"
                 disabled={disableButtons() || breakTimer <= 60}
@@ -80,7 +85,7 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
                 type="button"
                 className="btn btn-secondary"
                 data-testid="increase-break"
-                disabled={disableButtons() || breakTimer >= (15 * 60)}
+                disabled={disableButtons() || breakTimer >= 15 * 60}
                 onClick={increaseBreak}
               >
                 <span className="oi oi-plus" />
@@ -90,7 +95,7 @@ function ChangeTime({ focusTimer, setFocusTimer, breakTimer, setBreakTimer, time
         </div>
       </div>
     </div>
-  )
+  );
 }
- 
+
 export default ChangeTime;
